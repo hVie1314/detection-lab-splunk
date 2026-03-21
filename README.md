@@ -159,7 +159,7 @@ Một số cặp parent-child gần như luôn đáng nghi (ví dụ Word → Po
 
 ---
 
-## 🚨 Alerts
+## Alerts
 
 - Alert được tạo từ các SPL detection
 - Trigger khi có kết quả
@@ -172,7 +172,7 @@ Một số cặp parent-child gần như luôn đáng nghi (ví dụ Word → Po
 
 ---
 
-## 📊 Dashboard
+## Dashboard
 
 Dashboard dùng để:
 
