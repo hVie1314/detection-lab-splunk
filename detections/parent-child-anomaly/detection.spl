@@ -1,0 +1,6 @@
+index=labsoc earliest=-5m
+Category="Process Create (rule: ProcessCreate)"
+| where match(Image, "(?i)powershell.exe|cmd.exe")
+| where match(ParentImage, "(?i)winword.exe|excel.exe|outlook.exe|explorer.exe|powershell.exe")
+| where NOT match(CommandLine, "(?i)legit_script") 
+| stats count by host, user, ParentImage, Image, CommandLine

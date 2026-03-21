@@ -1,0 +1,5 @@
+index=labsoc earliest=-5m
+Category="Registry value set (rule: RegistryEvent)"
+| where like(TargetObject, "%\\CurrentVersion\\Run\\%")
+| where NOT match(Image, "(?i)OneDrive.exe|Teams.exe|svchost.exe")
+| stats count by host, user, TargetObject, Details, Image

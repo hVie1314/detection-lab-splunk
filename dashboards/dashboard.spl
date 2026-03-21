@@ -1,0 +1,50 @@
+# Panel 1: Total Alerts
+index=labsoc earliest=-24h
+(
+    CommandLine="*-enc*" OR
+    TargetImage="*lsass.exe" OR
+    TargetObject="*\\Run\\*" OR
+    ParentImage="*explorer.exe"
+)
+| stats count
+
+# Panel 2: Events Over Time
+index=labsoc earliest=-24h
+(
+    CommandLine="*-enc*" OR
+    TargetImage="*lsass.exe" OR
+    TargetObject="*\\Run\\*" OR
+    ParentImage="*explorer.exe"
+)
+| timechart count
+
+# Panel 3: PowerShell Encoded
+index=labsoc earliest=-24h
+CommandLine="*powershell*"
+| where match(CommandLine, "(?i)-enc")
+| stats count by host, user, CommandLine
+
+# Panel 4: LSASS Access
+index=labsoc earliest=-24h
+TargetImage="*lsass.exe"
+| where match(GrantedAccess, "1fffff")
+| stats count by host, SourceImage, GrantedAccess
+
+# Panel 5: Registry Persistence
+index=labsoc earliest=-24h
+Category="Registry value set (rule: RegistryEvent)"
+| where like(TargetObject, "%\\CurrentVersion\\Run\\%")
+| stats count by host, TargetObject, Details, Image
+
+# Panel 6: Parent-Child
+index=labsoc earliest=-24h
+Category="Process Create (rule: ProcessCreate)"
+| where match(ParentImage, "(?i)explorer.exe")
+| where match(Image, "(?i)cmd.exe|powershell.exe")
+| stats count by host, ParentImage, Image, CommandLine
+
+# Panel 7: Top Processes
+index=labsoc earliest=-24h
+| stats count by Image
+| sort -count
+| head 10

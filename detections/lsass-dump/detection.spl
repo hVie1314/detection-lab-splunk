@@ -1,0 +1,6 @@
+index=labsoc
+TargetImage="*lsass.exe"
+| where NOT match(SourceImage, "(?i)lsass.exe|vmtoolsd.exe|wmiprvse.exe|MicrosoftEdgeUpdate.exe")
+| where match(GrantedAccess, "(?i)1fffff")
+| stats count by host, user, SourceImage, TargetImage, GrantedAccess
+| eval severity="critical", technique="T1003", tactic="Credential Access"

@@ -1,0 +1,5 @@
+index=labsoc Channel="Microsoft-Windows-Sysmon/Operational"
+Category="Process Create (rule: ProcessCreate)"
+CommandLine="*powershell*"
+| where match(CommandLine, "(?i)-enc")
+| stats count by host, User, CommandLine, ParentImage
