@@ -119,7 +119,7 @@ Phát hiện truy cập vào `lsass.exe`.
 **Ý nghĩa:**
 Hành vi điển hình của credential dumping.
 
-📄 [chi tiết](./detections/lsass-dump/README.md)  
+📄 [chi tiết](./detections/lsass-dump/README.MD)   
 
 ![screenshot lsass dump](screenshots/lsass-dump.png)
 
@@ -136,7 +136,7 @@ Phát hiện thay đổi Run key.
 **Ý nghĩa:**
 Persistence phổ biến khi user login.
 
-📄 [chi tiết](./detections/registry-persistence/README.md)  
+📄 [chi tiết](./detections/registry-persistence/README.MD)  
 
 ![screenshot registry persistence](screenshots/registry-persistence.png)
 
@@ -153,7 +153,7 @@ Phát hiện mối quan hệ process bất thường.
 **Ý nghĩa:**
 Một số cặp parent-child gần như luôn đáng nghi (ví dụ Word → PowerShell).
 
-📄 [chi tiết](./detections/parent-child-anomaly/README.md)  
+📄 [chi tiết](./detections/parent-child-anomaly/README.MD)  
 
 ![screenshot parent-child](screenshots/parent-child-anomaly.png)
 
